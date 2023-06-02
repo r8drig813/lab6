@@ -8,7 +8,7 @@
 
 <html>
 <jsp:include page="/static/head.jsp">
-  <jsp:param name="title" value="Lista Canciones"/>
+  <jsp:param name="title" value="Lista Canciones Banda"/>
 </jsp:include>
 <body>
 <div class="container">
@@ -18,7 +18,7 @@
   <div class="pb-5 pt-4 px-3 titlecolor">
     <div class="col-lg-6">
       <h1 class='text-light'>Lista de Canciones</h1>
-      <a class="btn btn-warning" href="">Mostrar todas las canciones</a>
+      <a class="btn btn-warning" href="<%=request.getContextPath()%>/listaCanciones">Mostrar todas las canciones</a>
     </div>
   </div>
   <div class="tabla">
@@ -31,11 +31,11 @@
       </tr>
       </thead>
       <tbody>
-      <% for (Cancion : listaCancionesBanda) { %>
+      <% for (Cancion j : lista) { %>
       <tr>
-        <td><%=Cancion.getIdCancion()%>
+        <td><%=j.getIdCancion()%>
         </td>
-        <td><%=j.getNombre_cancion() %>
+        <td><%=j.getNombre_cancion()%>
         </td>
         <td><%=j.getIdbanda()%>
         </td>

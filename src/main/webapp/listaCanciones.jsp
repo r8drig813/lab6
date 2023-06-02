@@ -11,13 +11,6 @@
   <jsp:param name="title" value="Lista Canciones"/>
 </jsp:include>
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
-  <style>
-    .btn-primary:active,
-    .btn-primary:focus {
-      background-color: red;
-    }
-  </style>
 </head>
 <body>
 <div class="container">
@@ -45,9 +38,7 @@
         </td>
         <td><%=j.getNombre_cancion() %>
         </td>
-        <td><%=j.getIdbanda()%>
-        </td>
-        <td> <button class="btn btn-primary" id="myButton">Favorito</button>
+        <td> <a  class="btn btn-success" href="<%=request.getContextPath()%>/CancionesServlet?a=cancionesBandas&id=<%=j.getIdbanda()%>"><%=j.getIdbanda()%></a>
         </td>
       </tr>
       <% } %>
@@ -56,12 +47,7 @@
   </div>
 </div>
 <jsp:include page="/static/scripts.jsp"/>
-<script>
-  var button = document.getElementById("myButton");
-  button.addEventListener("click", function() {
-    button.blur(); // Para quitar el enfoque después de hacer clic y aplicar el estilo :active
-  });
-</script>
+
 </body>
 </html>
 

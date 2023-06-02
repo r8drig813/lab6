@@ -73,9 +73,11 @@ public class CancionDao {
         return lista;
     }
 
-    public Cancion listarCancionesBanda(String id){
+    public ArrayList<Cancion> listarCancionesBanda(String id){
 
         Cancion cancion = null;
+        ArrayList<Cancion> lista = new ArrayList<>();
+
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -97,7 +99,7 @@ public class CancionDao {
                     cancion.setIdCancion(rs.getInt(1));
                     cancion.setNombre_cancion(rs.getString(2));
                     cancion.setIdbanda(rs.getString(3));
-
+                    lista.add(cancion);
                 }
             }
 
@@ -105,7 +107,7 @@ public class CancionDao {
             throw new RuntimeException(e);
         }
 
-        return cancion;
+        return lista;
     }
 
 

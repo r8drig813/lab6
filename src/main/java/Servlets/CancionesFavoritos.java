@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "CancionesServlet",urlPatterns = {"/CancionesServlet","/listaCanciones"})
-    public class CancionesServlet extends HttpServlet {
+@WebServlet(name = "CancionesFavoritos",urlPatterns = {"/CancionesFavoritos","/listaFavoritos"})
+public class CancionesFavoritos extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -19,18 +19,9 @@ import java.io.IOException;
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CancionDao cancionDao = new CancionDao();
 
-        String action = request.getParameter("a") == null ? "canciones" : request.getParameter("a");
+        String action = request.getParameter("a") == null ? "favoritos" : request.getParameter("a");
 
         switch (action) {
-            case "canciones":
-                request.setAttribute("listaCanciones", cancionDao.listaCanciones());
-                request.getRequestDispatcher("listaCanciones.jsp").forward(request, response);
-                break;
-            case "cancionesBandas":
-                String id = request.getParameter("id");
-                request.setAttribute("listaCancionesBanda", cancionDao.listarCancionesBanda(id));
-                request.getRequestDispatcher("listaCancionesBanda.jsp").forward(request, response);
-                break;
             case "favoritos":
                 request.setAttribute("listaCanciones", cancionDao.listaCanciones());
                 request.getRequestDispatcher("/listaFavoritos.jsp").forward(request, response);
