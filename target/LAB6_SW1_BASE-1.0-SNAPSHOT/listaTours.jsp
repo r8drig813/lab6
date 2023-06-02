@@ -32,14 +32,12 @@
                         </td>
                         <td><%=tour.getIdbanda()%>
                         </td>
-
                     </tr>
                     <%
                         }
                     %>
                 </table>
             </div>
-
         </div>
         <jsp:include page="/static/scripts.jsp"/>
     </body>
