@@ -31,10 +31,6 @@ import java.io.IOException;
                 request.setAttribute("listaCancionesBanda", cancionDao.listarCancionesBanda(id));
                 request.getRequestDispatcher("listaCancionesBanda.jsp").forward(request, response);
                 break;
-            case "favoritos":
-                request.setAttribute("listaCanciones", cancionDao.listaCanciones());
-                request.getRequestDispatcher("/listaFavoritos.jsp").forward(request, response);
-                break;
         }
     }
 }

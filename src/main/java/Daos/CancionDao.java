@@ -75,7 +75,6 @@ public class CancionDao {
 
     public ArrayList<Cancion> listarCancionesBanda(String id){
 
-        Cancion cancion = null;
         ArrayList<Cancion> lista = new ArrayList<>();
 
 
@@ -95,8 +94,7 @@ public class CancionDao {
 
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 if (rs.next()) {
-                    cancion = new Cancion();
-                    cancion.setIdCancion(rs.getInt(1));
+                    Cancion cancion = new Cancion();
                     cancion.setNombre_cancion(rs.getString(2));
                     cancion.setIdbanda(rs.getString(3));
                     lista.add(cancion);
@@ -109,7 +107,6 @@ public class CancionDao {
 
         return lista;
     }
-
 
    /* public Cancion listarCancionesBanda(String id){
 
@@ -145,6 +142,29 @@ public class CancionDao {
 
         return cancion;
     }*/
+
+    public void actualizar(Cancion cancion) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        String url = "jdbc:mysql://localhost:3306/lab6sw1?serverTimezone=America/Lima";
+        String sql = "update cancion set favorito = 1 where idCancion = ?";
+        try (Connection connection = DriverManager.getConnection(url, "root", "root");
+             PreparedStatement pstmt = connection.prepareStatement(sql)) {
+
+
+            pstmt.setInt(1, cancion.getFavorito());
+            pstmt.setInt(2,cancion.getIdCancion());
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
 

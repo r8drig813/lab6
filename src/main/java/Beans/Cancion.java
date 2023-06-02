@@ -5,7 +5,7 @@ public class Cancion {
     private int idCancion;
     private String nombre_cancion;
     private String idbanda;
-    private Boolean favorito;
+    private int favorito;
 
     public int getIdCancion() {
         return idCancion;
@@ -31,11 +31,11 @@ public class Cancion {
         this.idbanda = idbanda;
     }
 
-    public Boolean getFavorito() {
+    public int getFavorito() {
         return favorito;
     }
 
-    public void setFavorito(Boolean favorito) {
+    public void setFavorito(int favorito) {
         this.favorito = favorito;
     }
 }

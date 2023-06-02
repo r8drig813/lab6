@@ -8,16 +8,15 @@
 
 <html>
 <jsp:include page="/static/head.jsp">
-    <jsp:param name="title" value="Lista Canciones"/>
+    <jsp:param name="title" value="Lista Canciones Favoritos"/>
 </jsp:include>
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
     <jsp:include page="/includes/navbar.jsp">
-        <jsp:param name="page" value="canciones"/>
+        <jsp:param name="page" value="Favoritos"/>
     </jsp:include>
     <div class="pb-5 pt-4 px-3 titlecolor">
         <div class="col-lg-6">
@@ -41,9 +40,9 @@
                 </td>
                 <td><%=j.getNombre_cancion() %>
                 </td>
-                <td> <a  class="btn btn-success" href="<%=request.getContextPath()%>/CancionesServlet?a=cancionesBandas&id=<%=j.getIdbanda()%>"><%=j.getIdbanda()%></a>
+                <td> <%=j.getIdbanda()%>
                 </td>
-                <td>  <button class="green" onclick="changeColor(this)">Favorito</button>
+                <td>  <button class="green" onclick="changeColor(this)">Añadir a Favoritos</button>
                 </td>
             </tr>
             <% } %>
@@ -56,9 +55,9 @@
     function changeColor(button) {
         if (button.classList.contains("btn-success")) {
             button.classList.remove("btn-success");
-            button.classList.add("btn-danger");
+            button.classList.add("btn-secondary");
         } else {
-            button.classList.remove("btn-danger");
+            button.classList.remove("btn-secondary");
             button.classList.add("btn-success");
         }
     }

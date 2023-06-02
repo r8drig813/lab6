@@ -1,5 +1,6 @@
 package Servlets;
 
+import Beans.Cancion;
 import Daos.CancionDao;
 
 import javax.servlet.ServletException;
@@ -9,11 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "CancionesFavoritos",urlPatterns = {"/CancionesFavoritos","/listaFavoritos"})
+@WebServlet(name = "CancionesFavServlet",urlPatterns = {"/CancionesFavoritos","/listaFavoritos"})
 public class CancionesFavoritos extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("p") == null ? "crear" : request.getParameter("p");
 
+        CancionDao cancionDao = new CancionDao();
+
+        switch (action) {
+            case "a":
+                Cancion cancion = parseCancion(request);
+                cancionDao.actualizar(cancion);
+                response.sendRedirect(request.getContextPath() + "/listaFavoritos");
+                break;
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,5 +38,26 @@ public class CancionesFavoritos extends HttpServlet {
                 request.getRequestDispatcher("/listaFavoritos.jsp").forward(request, response);
                 break;
         }
+    }
+
+    public Cancion parseCancion(HttpServletRequest request) {
+
+        Cancion cancion = new Cancion();
+        String idCancion = request.getParameter("idCancion") != null ? request.getParameter("idCancion") : "";
+        String favorito = request.getParameter("favorito");
+        try {
+
+            int id = Integer.parseInt(idCancion);
+            int fav = Integer.parseInt(favorito);
+
+            cancion.setIdCancion(id);
+            cancion.setFavorito(fav);
+
+            return cancion;
+
+        } catch (NumberFormatException e) {
+
+        }
+        return cancion;
     }
 }

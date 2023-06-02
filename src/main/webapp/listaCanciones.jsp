@@ -38,8 +38,14 @@
         </td>
         <td><%=j.getNombre_cancion() %>
         </td>
-        <td> <a  class="btn btn-success" href="<%=request.getContextPath()%>/CancionesServlet?a=cancionesBandas&id=<%=j.getIdbanda()%>"><%=j.getIdbanda()%></a>
+        <td> <a   class="btn btn-success" href="<%=request.getContextPath()%>/CancionesServlet?a=cancionesBandas&id=<%=j.getIdbanda()%>"><%=j.getIdbanda()%></a>
         </td>
+        <!--<td>  <button class="green" onclick="changeColor(this)">Añadir a Favoritos</button>
+        </td>-->
+        <td>
+          <a onclick="changeColor(this)"  href="<%=request.getContextPath()%>/CancionesFavoritos?p=a&id=<%=j.getIdCancion()%>">Añadir a Favoritos</a>
+        </td>
+
       </tr>
       <% } %>
       </tbody>
@@ -47,7 +53,17 @@
   </div>
 </div>
 <jsp:include page="/static/scripts.jsp"/>
-
+<script>
+  function changeColor(a) {
+    if (a.classList.contains("btn-success")) {
+      a.classList.remove("btn-success");
+      a.classList.add("btn-secondary");
+    } else {
+      a.classList.remove("btn-secondary");
+      a.classList.add("btn-success");
+    }
+  }
+</script>
 </body>
 </html>
 
