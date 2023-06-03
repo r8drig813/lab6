@@ -24,6 +24,11 @@ public class CancionesFavoritos extends HttpServlet {
                 cancionDao.actualizar(cancion);
                 response.sendRedirect(request.getContextPath() + "/listaFavoritos");
                 break;
+            case "b":
+                Cancion cancion2 = parseCancion(request);
+                cancionDao.eliminar(cancion2);
+                response.sendRedirect(request.getContextPath() + "/listaFavoritos");
+                break;
         }
     }
 
@@ -34,8 +39,12 @@ public class CancionesFavoritos extends HttpServlet {
 
         switch (action) {
             case "favoritos":
-                request.setAttribute("listaCanciones", cancionDao.listaCanciones());
+                request.setAttribute("listaCanciones", cancionDao.listaFavoritos());
                 request.getRequestDispatcher("/listaFavoritos.jsp").forward(request, response);
+            break;
+            case "canciones":
+                request.setAttribute("listaCanciones", cancionDao.listaCanciones());
+                request.getRequestDispatcher("/listaCanciones.jsp").forward(request, response);
                 break;
         }
     }

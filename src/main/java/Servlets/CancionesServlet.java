@@ -27,9 +27,14 @@ import java.io.IOException;
                 request.getRequestDispatcher("listaCanciones.jsp").forward(request, response);
                 break;
             case "cancionesBandas":
-                String id = request.getParameter("id");
-                request.setAttribute("listaCancionesBanda", cancionDao.listarCancionesBanda(id));
+                String id2 = request.getParameter("id");
+                request.setAttribute("listaCancionesBanda", cancionDao.listarCancionesBanda(id2));
                 request.getRequestDispatcher("listaCancionesBanda.jsp").forward(request, response);
+                break;
+            case "anadir":
+                String id = request.getParameter("id");
+                request.setAttribute("anadir", cancionDao.listar(id));
+                request.getRequestDispatcher("listaAnadir.jsp").forward(request, response);
                 break;
         }
     }

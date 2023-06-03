@@ -1,25 +1,26 @@
 <%@ page import="java.util.Calendar" %>
 <%@ page import="Beans.Cancion" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="Beans.Banda" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-  ArrayList<Cancion> lista = (ArrayList<Cancion>) request.getAttribute("listaCancionesBanda");
+  ArrayList<Banda> lista = (ArrayList<Banda>) request.getAttribute("listaBandas");
 %>
 
 <html>
 <jsp:include page="/static/head.jsp">
-  <jsp:param name="title" value="Lista Canciones Banda"/>
+  <jsp:param name="title" value="Lista Bandas"/>
 </jsp:include>
+<head>
+</head>
 <body>
 <div class="container">
   <jsp:include page="/includes/navbar.jsp">
-    <jsp:param name="page" value="canciones"/>
+    <jsp:param name="page" value="bandas"/>
   </jsp:include>
   <div class="pb-5 pt-4 px-3 titlecolor">
-    <div class="row mt-2 mb-3">
-      <h1 class="col-10 text-light"  >Lista de Canciones por Banda</h1>
-        <div class="col-2">
-          <a class="btn btn-warning" href="<%=request.getContextPath()%>/listaCanciones">Mostrar todas las canciones</a>        </div>
+    <div class="col-lg-6">
+      <h1 class='text-light'>Lista de Bandas </h1>
     </div>
   </div>
   <div class="tabla">
@@ -27,19 +28,17 @@
       <thead>
       <tr>
         <th>ID</th>
-        <th>CANCION</th>
         <th>BANDA</th>
       </tr>
       </thead>
       <tbody>
-      <% for (Cancion j : lista) { %>
+      <% for (Banda j : lista) { %>
       <tr>
-        <td><%=j.getIdCancion()%>
+        <td><%=j.getIdBanda()%>
         </td>
-        <td><%=j.getNombre_cancion()%>
+        <td> <a   class="btn btn-success" href="<%=request.getContextPath()%>/CancionesServlet?a=cancionesBandas&id=<%=j.getIdBanda()%>"><%=j.getIdBanda()%></a>
         </td>
-        <td><%=j.getIdbanda()%>
-        </td>
+
       </tr>
       <% } %>
       </tbody>
@@ -47,6 +46,7 @@
   </div>
 </div>
 <jsp:include page="/static/scripts.jsp"/>
+
 </body>
 </html>
 

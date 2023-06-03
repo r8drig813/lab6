@@ -12,6 +12,11 @@ public class Banda {
         this.idlider = idlider;
     }
 
+    public Banda() {
+
+    }
+
+
     public String getIdBanda() {
         return idBanda;
     }

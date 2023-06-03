@@ -42,7 +42,7 @@
                 </td>
                 <td> <%=j.getIdbanda()%>
                 </td>
-                <td>  <button class="green" onclick="changeColor(this)">Añadir a Favoritos</button>
+                <td> <a  class="btn btn-success" onclick="changeColor(this)"  href="<%=request.getContextPath()%>/CancionesFavoritos?p=b&id=<%=j.getIdCancion()%>">Eliminar de Favoritos</a>
                 </td>
             </tr>
             <% } %>

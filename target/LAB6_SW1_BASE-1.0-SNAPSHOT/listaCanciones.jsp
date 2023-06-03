@@ -29,6 +29,9 @@
         <th>ID</th>
         <th>CANCION</th>
         <th>BANDA</th>
+        <th>AÑADIR</th>
+        <th>AÑADIR A FAVORITOS</th>
+
       </tr>
       </thead>
       <tbody>
@@ -40,10 +43,10 @@
         </td>
         <td> <a   class="btn btn-success" href="<%=request.getContextPath()%>/CancionesServlet?a=cancionesBandas&id=<%=j.getIdbanda()%>"><%=j.getIdbanda()%></a>
         </td>
-        <!--<td>  <button class="green" onclick="changeColor(this)">Añadir a Favoritos</button>
-        </td>-->
+        <td> <a   class="btn btn-success" href="<%=request.getContextPath()%>/CancionesServlet?a=anadir&id=<%=j.getIdbanda()%>"> + </a>
+        </td>
         <td>
-          <a onclick="changeColor(this)"  href="<%=request.getContextPath()%>/CancionesFavoritos?p=a&id=<%=j.getIdCancion()%>">Añadir a Favoritos</a>
+          <a  class="btn btn-success" onclick="changeColor(this)"  href="<%=request.getContextPath()%>/CancionesFavoritos?p=a&id=<%=j.getIdCancion()%>">Añadir a Favoritos</a>
         </td>
 
       </tr>
